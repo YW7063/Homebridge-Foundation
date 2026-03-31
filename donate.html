@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Donate to Home-Bridge Foundation — support affordable housing, green energy, and workforce development in Dillon County, SC.">
+<title>Donate | Home-Bridge Foundation</title>
+<link rel="stylesheet" href="css/main.css">
+<style>
+  .donate-main { padding: 6rem 0; background: white; }
+  .donate-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 5rem; align-items: start; }
+
+  .donate-why h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 1.2rem; }
+  .why-list { list-style: none; display: flex; flex-direction: column; gap: .9rem; margin-bottom: 2rem; }
+  .why-item { display: flex; gap: .9rem; align-items: flex-start; font-size: .95rem; color: var(--muted); line-height: 1.6; }
+  .why-check { width: 24px; height: 24px; min-width: 24px; background: var(--green-light); color: var(--green-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 700; }
+
+  .impact-map { background: var(--off-white); border-radius: 18px; padding: 1.8rem; margin-top: 2rem; border: 1px solid var(--border); }
+  .impact-map h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 1rem; }
+  .impact-row { display: flex; justify-content: space-between; align-items: center; padding: .65rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; }
+  .impact-row:last-child { border-bottom: none; }
+  .impact-amt { font-weight: 700; color: var(--green-dark); }
+  .impact-desc { color: var(--muted); text-align: right; max-width: 200px; }
+
+  /* DONATE FORM CARD */
+  .donate-card { background: var(--off-white); border-radius: 24px; padding: 2.5rem; border: 1px solid var(--border); position: sticky; top: 88px; }
+  .donate-card h3 { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--navy); margin-bottom: .4rem; }
+  .card-sub  { font-size: .9rem; color: var(--muted); margin-bottom: 2rem; }
+  .freq-tabs { display: flex; gap: .5rem; margin-bottom: 1.5rem; }
+  .freq-tab  { flex: 1; padding: .6rem; background: white; border: 2px solid var(--border); border-radius: 10px; text-align: center; font-size: .85rem; font-weight: 600; cursor: pointer; color: var(--muted); transition: all .2s; }
+  .freq-tab.active { border-color: var(--blue); color: var(--blue-dark); background: var(--blue-light); }
+  .amount-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .65rem; margin-bottom: .85rem; }
+  .amount-btn {
+    background: white; border: 2px solid var(--border); border-radius: 12px;
+    padding: .85rem .5rem; text-align: center; cursor: pointer;
+    transition: all .2s; font-family: 'DM Sans', sans-serif; color: var(--navy);
+  }
+  .amount-btn:hover, .amount-btn.active { border-color: var(--green); background: var(--green-light); color: var(--green-dark); }
+  .amount-big { display: block; font-size: 1.15rem; font-weight: 700; }
+  .amount-note { display: block; font-size: .62rem; color: var(--muted); margin-top: .15rem; }
+  .amount-btn.active .amount-note { color: var(--green-dark); }
+  .custom-wrap { position: relative; margin-bottom: 1.5rem; }
+  .custom-wrap .prefix { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: 600; }
+  .custom-input { width: 100%; padding: .85rem 1rem .85rem 1.8rem; border: 2px solid var(--border); border-radius: 12px; font-size: 1rem; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color .2s; }
+  .custom-input:focus { border-color: var(--green); }
+  .donate-main-btn {
+    width: 100%; background: var(--green); color: white; border: none;
+    padding: 1.1rem; border-radius: 50px; font-size: 1.05rem; font-weight: 700;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: all .25s; box-shadow: 0 4px 20px rgba(58,170,53,.3);
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+  }
+  .donate-main-btn:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(58,170,53,.4); }
+  .secure-note { text-align: center; font-size: .75rem; color: var(--muted); margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: .4rem; }
+  .processor-note { background: var(--blue-light); border-radius: 12px; padding: 1rem 1.2rem; margin-top: 1.2rem; font-size: .82rem; color: var(--blue-dark); line-height: 1.55; }
+  .processor-note strong { display: block; margin-bottom: .3rem; }
+
+  /* OTHER WAYS */
+  .other-ways { padding: 5rem 0; background: var(--off-white); }
+  .ways-grid  { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .way-card   { background: white; border-radius: 20px; padding: 2rem; border: 1px solid var(--border); text-align: center; }
+  .way-icon   { font-size: 2.4rem; margin-bottom: 1rem; }
+  .way-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: .6rem; }
+  .way-card p  { font-size: .87rem; color: var(--muted); line-height: 1.6; }
+
+  @media(max-width:960px) {
+    .donate-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .donate-card { position: static; }
+    .ways-grid { grid-template-columns: 1fr; }
+    .donate-main, .other-ways { padding: 4rem 0; }
+  }
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>Donate</span></div>
+    <h1>Support Home-Bridge Foundation</h1>
+    <p>Your donation directly funds housing, workforce training, and green energy programs for families in Dillon County, South Carolina.</p>
+  </div>
+</div>
+
+<section class="donate-main">
+  <div class="container">
+    <div class="donate-grid">
+
+      <!-- WHY GIVE -->
+      <div class="donate-why">
+        <h3>Your gift builds opportunity in rural South Carolina.</h3>
+        <ul class="why-list">
+          <li class="why-item"><div class="why-check">✓</div>100% of donations fund programs serving Dillon County families</li>
+          <li class="why-item"><div class="why-check">✓</div>Fully tax-deductible — Home-Bridge Foundation is a federally recognized 501(c)(3)</li>
+          <li class="why-item"><div class="why-check">✓</div>Donation receipt provided for your records immediately</li>
+          <li class="why-item"><div class="why-check">✓</div>Corporate and foundation matching gifts welcomed</li>
+          <li class="why-item"><div class="why-check">✓</div>In-kind donations of services and equipment also accepted</li>
+          <li class="why-item"><div class="why-check">✓</div>Transparent financial reporting to all donors annually</li>
+        </ul>
+
+        <div class="impact-map reveal">
+          <h4>Your Donation at Work</h4>
+          <div class="impact-row"><span class="impact-amt">$25</span><span class="impact-desc">Training materials for one participant</span></div>
+          <div class="impact-row"><span class="impact-amt">$50</span><span class="impact-desc">Industry certification exam fee</span></div>
+          <div class="impact-row"><span class="impact-amt">$100</span><span class="impact-desc">One week of workforce training</span></div>
+          <div class="impact-row"><span class="impact-amt">$250</span><span class="impact-desc">Housing repair materials for one home</span></div>
+          <div class="impact-row"><span class="impact-amt">$500</span><span class="impact-desc">Full training slot for one participant</span></div>
+          <div class="impact-row"><span class="impact-amt">$1,000</span><span class="impact-desc">Program sponsor — one cohort month</span></div>
+          <div class="impact-row"><span class="impact-amt">$5,000+</span><span class="impact-desc">Major program sponsor — contact us</span></div>
+        </div>
+      </div>
+
+      <!-- DONATION FORM -->
+      <div class="donate-card reveal">
+        <h3>Make a Donation</h3>
+        <p class="card-sub">Choose your donation frequency and amount below.</p>
+
+        <div class="freq-tabs">
+          <div class="freq-tab active" onclick="setFreq(this,'one-time')">One-Time</div>
+          <div class="freq-tab" onclick="setFreq(this,'monthly')">Monthly</div>
+        </div>
+
+        <div class="amount-grid">
+          <button class="amount-btn" onclick="selectAmount(this,25)"><span class="amount-big">$25</span><span class="amount-note">Training materials</span></button>
+          <button class="amount-btn active" onclick="selectAmount(this,50)"><span class="amount-big">$50</span><span class="amount-note">Certification fee</span></button>
+          <button class="amount-btn" onclick="selectAmount(this,100)"><span class="amount-big">$100</span><span class="amount-note">Week of training</span></button>
+          <button class="amount-btn" onclick="selectAmount(this,250)"><span class="amount-big">$250</span><span class="amount-note">Housing materials</span></button>
+          <button class="amount-btn" onclick="selectAmount(this,500)"><span class="amount-big">$500</span><span class="amount-note">Full training slot</span></button>
+          <button class="amount-btn" onclick="selectAmount(this,1000)"><span class="amount-big">$1,000</span><span class="amount-note">Program sponsor</span></button>
+        </div>
+
+        <div class="custom-wrap">
+          <span class="prefix">$</span>
+          <input class="custom-input" id="customAmount" type="number" placeholder="Or enter custom amount" min="1">
+        </div>
+
+        <button class="donate-main-btn" onclick="handleDonate()">♥ &nbsp; Donate Now</button>
+        <p class="secure-note">🔒 Secure · Tax-Deductible · 501(c)(3) Verified</p>
+
+        <div class="processor-note">
+          <strong>💡 Setting up your payment processor:</strong>
+          Connect this button to <strong>Zeffy</strong> (0% fees), <strong>PayPal Giving Fund</strong>, or <strong>Network for Good</strong> — all free for 501(c)(3) nonprofits. Replace <code>handleDonate()</code> with your processor's donation link.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OTHER WAYS TO GIVE -->
+<section class="other-ways">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">More Ways to Help</div>
+      <h2 class="section-title">Beyond Financial Donations</h2>
+    </div>
+    <div class="ways-grid">
+      <div class="way-card reveal">
+        <div class="way-icon">🤝</div>
+        <h3>Volunteer Your Time</h3>
+        <p>Share your skills, experience, and energy to help deliver programs and support families in Dillon County.</p>
+      </div>
+      <div class="way-card reveal">
+        <div class="way-icon">🏢</div>
+        <h3>Corporate Partnership</h3>
+        <p>Partner with us to sponsor workforce training cohorts, provide employment opportunities, or fund housing programs.</p>
+      </div>
+      <div class="way-card reveal">
+        <div class="way-icon">📦</div>
+        <h3>In-Kind Donations</h3>
+        <p>Donate equipment, materials, professional services, or other resources to support our programs directly.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="contact.html" class="btn-primary">Contact Us About These Options</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  function setFreq(tab, freq) {
+    document.querySelectorAll('.freq-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  }
+</script>
+</body>
+</html>

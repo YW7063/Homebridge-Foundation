@@ -1,0 +1,88 @@
+// ── NAV ACTIVE STATE ───────────────────────────────────────────
+(function () {
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href === path || (path === '' && href === 'index.html')) {
+      a.classList.add('active');
+    }
+  });
+})();
+
+// ── HAMBURGER MENU ─────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+}
+
+// ── SCROLL REVEAL ──────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, entry.target.dataset.delay || 0);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.dataset.delay = (i % 4) * 80;
+  observer.observe(el);
+});
+
+// ── SMOOTH SCROLL (anchor links) ───────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ── DONATE AMOUNT SELECTOR ─────────────────────────────────────
+window.selectedAmount = 50;
+
+window.selectAmount = function(btn, amount) {
+  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  window.selectedAmount = amount;
+  const custom = document.getElementById('customAmount');
+  if (custom) custom.value = '';
+};
+
+window.handleDonate = function() {
+  const custom = document.getElementById('customAmount');
+  const val = custom ? custom.value.replace(/[^0-9.]/g, '') : '';
+  const amount = val || window.selectedAmount;
+  alert(
+    `Thank you for your $${amount} donation!\n\n` +
+    `To complete your gift, this button will connect to your payment processor.\n\n` +
+    `Recommended FREE options for nonprofits:\n` +
+    `• PayPal Giving Fund (paypal.com/us/webapps/mpp/npc-donate-form)\n` +
+    `• Network for Good (networkforgood.com)\n` +
+    `• Zeffy (zeffy.com — 0% fees)\n\n` +
+    `Home-Bridge Foundation is a 501(c)(3). Your donation is tax-deductible.`
+  );
+};
+
+// ── CONTACT FORM ───────────────────────────────────────────────
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'var(--green-dark)';
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+      this.reset();
+    }, 3000);
+  });
+}

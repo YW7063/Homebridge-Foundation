@@ -1,0 +1,97 @@
+// Shared nav HTML — injected by each page
+window.NAV_HTML = `
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="40" height="40" viewBox="0 0 42 42" fill="none">
+        <path d="M4 30 Q21 10 38 30" stroke="#3aaa35" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <circle cx="21" cy="9" r="4" fill="#3aaa35"/>
+        <circle cx="12" cy="15" r="3.2" fill="#1b6bbf"/>
+        <circle cx="30" cy="15" r="3.2" fill="#1b6bbf"/>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="top"><em>Home</em><strong>Bridge</strong></span>
+        <span class="sub">Foundation</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="donate.html">Donate</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="donate.html" class="nav-donate">Donate Now</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="programs.html">Programs</a>
+  <a href="donate.html">Donate</a>
+  <a href="contact.html">Contact</a>
+</div>
+`;
+
+window.FOOTER_HTML = `
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <svg width="48" height="48" viewBox="0 0 42 42" fill="none">
+        <path d="M4 30 Q21 10 38 30" stroke="#3aaa35" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <circle cx="21" cy="9" r="4" fill="#3aaa35"/>
+        <circle cx="12" cy="15" r="3.2" fill="#1b6bbf"/>
+        <circle cx="30" cy="15" r="3.2" fill="#1b6bbf"/>
+      </svg>
+      <p class="tagline">Connecting Community to Opportunity</p>
+      <p>Home-Bridge Foundation, Inc. is a federally recognized 501(c)(3) nonprofit serving Dillon County and the Pee Dee region of South Carolina.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="programs.html#housing">Affordable Housing</a></li>
+        <li><a href="programs.html#green">Green Energy</a></li>
+        <li><a href="programs.html#workforce">Workforce Development</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Organization</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="about.html#board">Board of Directors</a></li>
+        <li><a href="about.html#mission">Mission & Values</a></li>
+        <li><a href="donate.html">Support Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><span>Marcus Hayes, Executive Director</span></li>
+        <li><span>547 Hickory Pointe Place</span></li>
+        <li><span>Latta, SC 29565</span></li>
+        <li><a href="mailto:info@homebridgefoundation.org">info@homebridgefoundation.org</a></li>
+        <li><a href="contact.html">Send a Message →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Home-Bridge Foundation, Inc. · 501(c)(3) Nonprofit · EIN on file</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Donor Rights</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+`;
+
+// Inject nav + footer
+document.addEventListener('DOMContentLoaded', function() {
+  const navTarget = document.getElementById('nav-placeholder');
+  const footerTarget = document.getElementById('footer-placeholder');
+  if (navTarget)    navTarget.outerHTML = window.NAV_HTML;
+  if (footerTarget) footerTarget.outerHTML = window.FOOTER_HTML;
+});

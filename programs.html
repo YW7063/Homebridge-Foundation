@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Home-Bridge Foundation programs: Affordable Housing, Green Energy, and Workforce Development in Dillon County, SC.">
+<title>Programs | Home-Bridge Foundation</title>
+<link rel="stylesheet" href="css/main.css">
+<style>
+  .program-section { padding: 6rem 0; }
+  .program-section:nth-child(even) { background: var(--off-white); }
+  .program-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .program-inner.reverse { direction: rtl; }
+  .program-inner.reverse > * { direction: ltr; }
+  .prog-label { display: inline-flex; align-items: center; gap: .5rem; padding: .35rem .9rem; border-radius: 50px; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+  .prog-label.blue   { background: var(--blue-light);   color: var(--blue-dark); }
+  .prog-label.green  { background: var(--green-light);  color: var(--green-dark); }
+  .prog-label.orange { background: var(--orange-light); color: #8a3500; }
+  .prog-label.launch { background: #fff3cd; color: #7a4f00; }
+  .program-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 700; color: var(--navy); margin-bottom: 1rem; line-height: 1.2; }
+  .program-inner .desc { font-size: 1rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
+  .prog-bullets { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.8rem; }
+  .prog-bullet  { display: flex; gap: .75rem; align-items: flex-start; font-size: .93rem; color: var(--muted); line-height: 1.55; }
+  .prog-bullet::before { content: '→'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  .prog-visual {
+    border-radius: 24px; overflow: hidden; min-height: 380px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .prog-visual.blue-v   { background: linear-gradient(135deg, var(--blue-dark) 0%, var(--navy) 100%); }
+  .prog-visual.green-v  { background: linear-gradient(135deg, #1e5c38 0%, var(--navy) 100%); }
+  .prog-visual.orange-v { background: linear-gradient(135deg, #7a3500 0%, var(--navy) 100%); }
+  .prog-visual-inner { text-align: center; padding: 3rem; }
+  .prog-visual-icon  { font-size: 5rem; margin-bottom: 1.5rem; }
+  .prog-visual h3    { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; margin-bottom: .5rem; }
+  .prog-visual p     { font-size: .9rem; color: rgba(255,255,255,.65); line-height: 1.6; }
+
+  .launch-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: #fff3cd; color: #7a4f00;
+    padding: .5rem 1rem; border-radius: 50px; font-size: .82rem; font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .launch-dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; animation: pulse 2s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+
+  /* HOW WE HELP */
+  .how-band { background: var(--navy); padding: 5rem 0; color: white; }
+  .how-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .how-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 1.8rem; text-align: center; }
+  .how-num  { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--green); margin-bottom: .5rem; }
+  .how-desc { font-size: .83rem; color: rgba(255,255,255,.7); line-height: 1.55; }
+
+  @media(max-width:960px) {
+    .program-inner, .program-inner.reverse { grid-template-columns: 1fr; direction: ltr; gap: 2.5rem; }
+    .program-section { padding: 4rem 0; }
+    .how-grid { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>Programs</span></div>
+    <h1>Our Programs</h1>
+    <p>Three focused initiatives designed to address the root causes of economic inequality in Dillon County and the Pee Dee region.</p>
+  </div>
+</div>
+
+<!-- WORKFORCE (LAUNCH NOW) -->
+<section class="program-section" id="workforce">
+  <div class="container">
+    <div class="program-inner">
+      <div>
+        <div class="launch-badge"><span class="launch-dot"></span> Launching Now · ASAP Funding Priority</div>
+        <span class="prog-label orange">Workforce Development</span>
+        <h2>Skills Training &amp; Career Pathways</h2>
+        <p class="desc">Home-Bridge Foundation's flagship launch program provides industry-recognized certifications and employment pathways in emerging sectors for adults facing barriers to employment in Dillon County.</p>
+        <div class="prog-bullets">
+          <div class="prog-bullet">Industry certification training in construction, green energy, IT, and more</div>
+          <div class="prog-bullet">Individualized career coaching and barrier assessment at intake</div>
+          <div class="prog-bullet">Direct employer partnerships for job placement in the Pee Dee region</div>
+          <div class="prog-bullet">Wraparound support: transportation, childcare referrals, financial coaching</div>
+          <div class="prog-bullet">30/60/90-day post-placement follow-up for job retention</div>
+          <div class="prog-bullet">Serving adults 18+, prioritizing those below 200% federal poverty level</div>
+        </div>
+        <a href="donate.html" class="btn-primary">Support Workforce Training →</a>
+      </div>
+      <div class="prog-visual orange-v reveal">
+        <div class="prog-visual-inner">
+          <div class="prog-visual-icon">🎓</div>
+          <h3>Workforce Development</h3>
+          <p>Certifications · Career Coaching · Employer Partnerships · Job Placement</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOUSING -->
+<section class="program-section" id="housing">
+  <div class="container">
+    <div class="program-inner reverse">
+      <div>
+        <span class="prog-label blue">Affordable Housing</span>
+        <h2>Safe, Quality Housing for Every Family</h2>
+        <p class="desc">Stable housing is the foundation of everything else. Home-Bridge Foundation works to develop, preserve, and revitalize affordable housing opportunities for underserved families in Dillon County.</p>
+        <div class="prog-bullets">
+          <div class="prog-bullet">Development of new affordable housing units in underserved communities</div>
+          <div class="prog-bullet">Preservation and rehabilitation of existing housing stock</div>
+          <div class="prog-bullet">Homeownership education and down payment assistance programs</div>
+          <div class="prog-bullet">Housing stability support for families at risk of displacement</div>
+          <div class="prog-bullet">Partnerships with HUD, SCSHFDA, and USDA Rural Development</div>
+        </div>
+        <a href="donate.html" class="btn-primary">Support Affordable Housing →</a>
+      </div>
+      <div class="prog-visual blue-v reveal">
+        <div class="prog-visual-inner">
+          <div class="prog-visual-icon">🏠</div>
+          <h3>Affordable Housing</h3>
+          <p>Development · Preservation · Homeownership · Stability</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GREEN ENERGY -->
+<section class="program-section" id="green">
+  <div class="container">
+    <div class="program-inner">
+      <div>
+        <span class="prog-label green">Green Energy &amp; Environment</span>
+        <h2>Environmental Justice &amp; Green Economic Development</h2>
+        <p class="desc">We advance community-based environmental justice through green energy initiatives and sustainability programs — building economic resilience and environmental health in the communities we serve.</p>
+        <div class="prog-bullets">
+          <div class="prog-bullet">Green energy access and weatherization for low-income households</div>
+          <div class="prog-bullet">Community-based environmental justice advocacy and education</div>
+          <div class="prog-bullet">Sustainability programs advancing environmental health outcomes</div>
+          <div class="prog-bullet">Green jobs training connecting residents to emerging energy sectors</div>
+          <div class="prog-bullet">Partnerships with EPA, DOE, and USDA Rural Energy programs</div>
+        </div>
+        <a href="donate.html" class="btn-primary">Support Green Energy Programs →</a>
+      </div>
+      <div class="prog-visual green-v reveal">
+        <div class="prog-visual-inner">
+          <div class="prog-visual-icon">🌱</div>
+          <h3>Green Energy &amp; Environment</h3>
+          <p>Energy Access · Environmental Justice · Sustainability · Green Jobs</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE MEASURE IMPACT -->
+<section class="how-band">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label" style="color:var(--green)">Accountability</div>
+      <h2 class="section-title" style="color:white">How We Measure Impact</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-card reveal"><div class="how-num">📋</div><div class="how-desc">Participant intake tracking from first contact through job placement</div></div>
+      <div class="how-card reveal"><div class="how-num">🎯</div><div class="how-desc">Outcome targets set quarterly and reported to Board of Directors</div></div>
+      <div class="how-card reveal"><div class="how-num">📊</div><div class="how-desc">90-day employment retention follow-up for every workforce participant</div></div>
+      <div class="how-card reveal"><div class="how-num">📢</div><div class="how-desc">Transparent annual reporting to donors, funders, and community</div></div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
