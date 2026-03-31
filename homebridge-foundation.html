@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomeBridge Foundation — Connecting Community to Opportunity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #3aaa35;
+    --green-dark: #2e7d4f;
+    --green-light: #e8f7e8;
+    --blue: #1b6bbf;
+    --blue-dark: #1B5E8A;
+    --blue-light: #e8f2fb;
+    --navy: #1a2e44;
+    --text: #1a2e44;
+    --muted: #5a6a7a;
+    --white: #ffffff;
+    --off-white: #f8faf9;
+    --border: #e0eae2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 42px; height: 42px;
+  }
+
+  .nav-logo-text {
+    display: flex; flex-direction: column; line-height: 1.1;
+  }
+
+  .nav-logo-text span:first-child {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600; font-size: 1rem;
+  }
+  .nav-logo-text span:first-child em { color: var(--green); font-style: normal; }
+  .nav-logo-text span:first-child strong { color: var(--blue); }
+  .nav-logo-text span:last-child {
+    font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none; color: var(--text);
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    background: var(--green);
+    color: white !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green-dark) !important; transform: translateY(-1px); }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    padding-top: 68px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 3rem 5rem 5rem;
+    position: relative; z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--green-light);
+    color: var(--green-dark);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero h1 .accent-green { color: var(--green); }
+  .hero h1 .accent-blue  { color: var(--blue); }
+
+  .hero-sub {
+    font-size: 1.15rem; color: var(--muted);
+    line-height: 1.7; max-width: 500px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: white; border: none;
+    padding: 0.9rem 2rem; border-radius: 50px;
+    font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(58,170,53,0.35);
+  }
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(58,170,53,0.4); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--blue);
+    border: 2px solid var(--blue);
+    padding: 0.9rem 2rem; border-radius: 50px;
+    font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: all 0.25s;
+  }
+  .btn-secondary:hover { background: var(--blue); color: white; transform: translateY(-2px); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--navy) 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .hero-right-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(58,170,53,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 30% 70%, rgba(27,107,191,0.3) 0%, transparent 60%);
+  }
+
+  .hero-graphic {
+    position: relative; z-index: 2;
+    text-align: center; padding: 3rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  /* Bridge SVG illustration */
+  .hero-bridge-art {
+    width: 100%; max-width: 460px;
+  }
+
+  /* Stats strip */
+  .hero-stats {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: grid; grid-template-columns: repeat(3,1fr);
+    z-index: 3;
+  }
+
+  .hero-stat {
+    padding: 1.5rem; text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-stat:last-child { border-right: none; }
+
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900;
+    color: white;
+  }
+  .hero-stat-num span { color: var(--green); }
+
+  .hero-stat-label {
+    font-size: 0.75rem; color: rgba(255,255,255,0.7);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-top: 0.25rem;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── IMPACT BAND ──────────────────────────────────── */
+  .impact-band {
+    background: var(--navy);
+    padding: 1.2rem 5rem;
+    display: flex; align-items: center; justify-content: center;
+    gap: 3rem; flex-wrap: wrap;
+  }
+
+  .impact-band-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    color: rgba(255,255,255,0.85); font-size: 0.9rem; font-weight: 500;
+  }
+
+  .impact-band-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION COMMONS ──────────────────────────────── */
+  section { padding: 6rem 5rem; }
+
+  .section-label {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--green);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700; color: var(--navy);
+    line-height: 1.2; margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1.05rem; color: var(--muted);
+    line-height: 1.7; max-width: 560px;
+  }
+
+  /* ── MISSION ──────────────────────────────────────── */
+  .mission {
+    background: var(--off-white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+
+  .mission-quote {
+    position: relative;
+    padding: 2.5rem;
+    background: white;
+    border-radius: 20px;
+    border-left: 5px solid var(--green);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.07);
+  }
+
+  .mission-quote::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem; line-height: 0;
+    color: var(--green-light);
+    position: absolute; top: 3rem; left: 1.5rem;
+    pointer-events: none;
+  }
+
+  .mission-quote p {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem; line-height: 1.65;
+    color: var(--navy);
+    position: relative; z-index: 1;
+  }
+
+  .mission-quote-author {
+    margin-top: 1.5rem;
+    font-size: 0.85rem; color: var(--muted);
+    font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── PROGRAMS ─────────────────────────────────────── */
+  .programs { background: white; }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .program-card {
+    background: var(--off-white);
+    border-radius: 20px;
+    padding: 2.2rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  .program-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 4px;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .program-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+  }
+  .program-card:hover::after { transform: scaleX(1); }
+
+  .program-card.housing::after  { background: var(--blue); }
+  .program-card.green::after    { background: var(--green); }
+  .program-card.workforce::after{ background: #e67e22; }
+
+  .program-icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .program-card.housing  .program-icon { background: var(--blue-light); }
+  .program-card.green    .program-icon { background: var(--green-light); }
+  .program-card.workforce.program-icon { background: #fef3e2; }
+  .program-card.workforce .program-icon { background: #fef3e2; }
+
+  .program-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 0.75rem;
+  }
+
+  .program-card p {
+    font-size: 0.92rem; color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .program-tag {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 0.3rem 0.8rem; border-radius: 50px;
+  }
+
+  .housing  .program-tag { background: var(--blue-light);   color: var(--blue-dark); }
+  .green    .program-tag { background: var(--green-light);  color: var(--green-dark); }
+  .workforce.program-tag { background: #fef3e2; color: #a04000; }
+
+  /* ── COMMUNITY NEED ───────────────────────────────── */
+  .need {
+    background: linear-gradient(135deg, var(--navy) 0%, #0f2035 100%);
+    position: relative; overflow: hidden;
+    color: white;
+  }
+
+  .need::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 10% 50%, rgba(58,170,53,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 90% 30%, rgba(27,107,191,0.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .need .section-title { color: white; }
+  .need .section-label { color: var(--green); }
+  .need .section-sub   { color: rgba(255,255,255,0.7); }
+
+  .need-stats {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1.5rem; margin-top: 3.5rem;
+    position: relative; z-index: 1;
+  }
+
+  .need-stat {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .need-stat:hover { background: rgba(255,255,255,0.12); }
+
+  .need-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem; font-weight: 900;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+  }
+
+  .need-stat-desc {
+    font-size: 0.85rem; color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+  }
+
+  /* ── DONATE ───────────────────────────────────────── */
+  .donate { background: white; }
+
+  .donate-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 5rem; align-items: start;
+    margin-top: 3rem;
+  }
+
+  .donate-why h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--navy);
+    margin-bottom: 1.2rem;
+  }
+
+  .donate-why ul {
+    list-style: none; display: flex; flex-direction: column; gap: 1rem;
+  }
+
+  .donate-why li {
+    display: flex; gap: 1rem; align-items: flex-start;
+    font-size: 0.95rem; color: var(--muted); line-height: 1.55;
+  }
+
+  .donate-why li::before {
+    content: '✓';
+    width: 24px; height: 24px; min-width: 24px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.75rem;
+  }
+
+  .donate-form {
+    background: var(--off-white);
+    border-radius: 24px;
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+  }
+
+  .donate-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .donate-form-sub {
+    font-size: 0.9rem; color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .amount-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 0.75rem; margin-bottom: 1rem;
+  }
+
+  .amount-btn {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 0.9rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--navy);
+  }
+  .amount-btn:hover, .amount-btn.active {
+    border-color: var(--green);
+    background: var(--green-light);
+    color: var(--green-dark);
+  }
+
+  .amount-btn .impact-note {
+    display: block;
+    font-size: 0.65rem; font-weight: 400;
+    color: var(--muted); margin-top: 0.2rem;
+  }
+
+  .custom-amount {
+    width: 100%;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    font-size: 1rem; font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1.5rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .custom-amount:focus { border-color: var(--green); }
+
+  .donate-btn-main {
+    width: 100%;
+    background: var(--green);
+    color: white; border: none;
+    padding: 1.1rem; border-radius: 50px;
+    font-size: 1.05rem; font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: 'DM Sans', sans-serif;
+    box-shadow: 0 4px 20px rgba(58,170,53,0.3);
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .donate-btn-main:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(58,170,53,0.4); }
+
+  .donate-secure {
+    text-align: center;
+    font-size: 0.78rem; color: var(--muted);
+    margin-top: 1rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+  }
+
+  /* ── GET INVOLVED ─────────────────────────────────── */
+  .involved { background: var(--off-white); }
+
+  .involved-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .involved-card {
+    background: white; border-radius: 20px;
+    padding: 2rem; border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .involved-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+
+  .involved-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .involved-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+
+  .involved-card p {
+    font-size: 0.88rem; color: var(--muted); line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-outline-green {
+    display: inline-block;
+    border: 2px solid var(--green);
+    color: var(--green-dark);
+    padding: 0.6rem 1.5rem; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline-green:hover { background: var(--green); color: white; }
+
+  /* ── CONTACT / FOOTER ─────────────────────────────── */
+  .contact {
+    background: var(--navy);
+    color: white;
+    padding: 4rem 5rem;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .contact-brand p {
+    font-size: 0.9rem; color: rgba(255,255,255,0.6);
+    line-height: 1.7; margin-top: 1rem; max-width: 280px;
+  }
+
+  .contact-brand .tagline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem; font-style: italic;
+    color: var(--green);
+    margin-top: 0.5rem;
+  }
+
+  .contact h4 {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 1.2rem;
+  }
+
+  .contact ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+
+  .contact ul li a, .contact ul li span {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none; font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .contact ul li a:hover { color: var(--green); }
+
+  .footer-bottom {
+    background: #0f1e2e;
+    padding: 1.2rem 5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-bottom p {
+    font-size: 0.8rem; color: rgba(255,255,255,0.4);
+  }
+
+  .footer-bottom a {
+    color: rgba(255,255,255,0.4); text-decoration: none;
+    font-size: 0.8rem; transition: color 0.2s;
+  }
+  .footer-bottom a:hover { color: var(--green); }
+
+  /* ── RESPONSIVE BASICS ────────────────────────────── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 350px; }
+    .hero-left { padding: 3rem 2rem; }
+    section { padding: 4rem 2rem; }
+    .programs-grid, .involved-grid { grid-template-columns: 1fr; }
+    .need-stats { grid-template-columns: repeat(2,1fr); }
+    .donate-grid, .mission { grid-template-columns: 1fr; gap: 2rem; }
+    .contact { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 2rem; }
+    .footer-bottom { padding: 1rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .impact-band { padding: 1rem 2rem; gap: 1.5rem; }
+    nav { padding: 0 1.2rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Bridge arc -->
+      <path d="M4 30 Q21 10 38 30" stroke="#3aaa35" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <!-- People -->
+      <circle cx="21" cy="9" r="4" fill="#3aaa35"/>
+      <circle cx="12" cy="15" r="3.2" fill="#1b6bbf"/>
+      <circle cx="30" cy="15" r="3.2" fill="#1b6bbf"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span><em>Home</em><strong>Bridge</strong></span>
+      <span>Foundation</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#need">Our Community</a></li>
+    <li><a href="#involved">Get Involved</a></li>
+    <li><a href="#donate" class="nav-cta">Donate Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-badge">501(c)(3) Nonprofit · Dillon County, SC</div>
+    <h1>
+      <span class="accent-green">Connecting</span><br>
+      Community<br>
+      <span class="accent-blue">to Opportunity</span>
+    </h1>
+    <p class="hero-sub">
+      Home-Bridge Foundation builds stronger communities in rural South Carolina through affordable housing, green energy development, and workforce training for those who need it most.
+    </p>
+    <div class="hero-actions">
+      <a href="#donate" class="btn-primary">
+        ♥ &nbsp;Donate Today
+      </a>
+      <a href="#programs" class="btn-secondary">
+        Our Programs →
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-graphic">
+      <svg class="hero-bridge-art" viewBox="0 0 460 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Sky/ground -->
+        <rect x="0" y="220" width="460" height="100" rx="0" fill="rgba(58,170,53,0.12)"/>
+
+        <!-- Bridge arch -->
+        <path d="M40 220 Q230 60 420 220" stroke="#3aaa35" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <!-- Bridge deck -->
+        <rect x="30" y="216" width="400" height="8" rx="4" fill="rgba(255,255,255,0.3)"/>
+        <!-- Vertical supports -->
+        <line x1="120" y1="136" x2="120" y2="224" stroke="rgba(255,255,255,0.2)" stroke-width="3" stroke-dasharray="4 4"/>
+        <line x1="230" y1="68"  x2="230" y2="224" stroke="rgba(255,255,255,0.2)" stroke-width="3" stroke-dasharray="4 4"/>
+        <line x1="340" y1="136" x2="340" y2="224" stroke="rgba(255,255,255,0.2)" stroke-width="3" stroke-dasharray="4 4"/>
+
+        <!-- Community figures -->
+        <!-- Center (green) -->
+        <circle cx="230" cy="105" r="18" fill="#3aaa35"/>
+        <ellipse cx="230" cy="145" rx="14" ry="20" fill="#3aaa35"/>
+        <!-- Left group -->
+        <circle cx="155" cy="150" r="14" fill="#1b6bbf"/>
+        <ellipse cx="155" cy="182" rx="11" ry="16" fill="#1b6bbf"/>
+        <circle cx="185" cy="160" r="12" fill="rgba(27,107,191,0.7)"/>
+        <ellipse cx="185" cy="188" rx="9" ry="13" fill="rgba(27,107,191,0.7)"/>
+        <!-- Right group -->
+        <circle cx="305" cy="150" r="14" fill="#1b6bbf"/>
+        <ellipse cx="305" cy="182" rx="11" ry="16" fill="#1b6bbf"/>
+        <circle cx="275" cy="160" r="12" fill="rgba(27,107,191,0.7)"/>
+        <ellipse cx="275" cy="188" rx="9" ry="13" fill="rgba(27,107,191,0.7)"/>
+
+        <!-- Houses on far sides -->
+        <polygon points="60,215 75,190 90,215" fill="rgba(255,255,255,0.25)"/>
+        <rect x="63" y="215" width="24" height="14" fill="rgba(255,255,255,0.15)"/>
+        <polygon points="370,215 385,190 400,215" fill="rgba(58,170,53,0.4)"/>
+        <rect x="373" y="215" width="24" height="14" fill="rgba(58,170,53,0.25)"/>
+
+        <!-- Stars / sparkles -->
+        <circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="380" cy="100" r="2.5" fill="rgba(58,170,53,0.6)"/>
+        <circle cx="150" cy="50" r="1.5" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="310" cy="60" r="2" fill="rgba(255,255,255,0.3)"/>
+      </svg>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span>3</span></div>
+        <div class="hero-stat-label">Core Programs</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span>1</span> County</div>
+        <div class="hero-stat-label">Dillon County, SC</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num"><span>100</span>%</div>
+        <div class="hero-stat-label">Community Funded</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT BAND -->
+<div class="impact-band">
+  <div class="impact-band-item">
+    <div class="impact-band-dot" style="background:var(--green)"></div>
+    501(c)(3) Federally Recognized Nonprofit
+  </div>
+  <div class="impact-band-item">
+    <div class="impact-band-dot" style="background:var(--blue)"></div>
+    SAM.gov &amp; Grants.gov Registered
+  </div>
+  <div class="impact-band-item">
+    <div class="impact-band-dot" style="background:#e67e22"></div>
+    Serving the Pee Dee Region
+  </div>
+  <div class="impact-band-item">
+    <div class="impact-band-dot" style="background:var(--green)"></div>
+    Founded December 2025
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div>
+    <div class="section-label">Who We Are</div>
+    <h2 class="section-title">Building Bridges to a Better Future</h2>
+    <p class="section-sub">
+      Home-Bridge Foundation was born from a belief that where you live shouldn't determine what you can achieve. We're a Dillon County nonprofit working to close the gap between underserved communities and the resources, housing, and opportunities they deserve.
+    </p>
+    <br><br>
+    <p class="section-sub">
+      Founded by community members who know the Pee Dee region firsthand, we bring local knowledge, deep relationships, and relentless commitment to every program we run.
+    </p>
+  </div>
+  <div class="mission-quote">
+    <p>Home-Bridge Foundation is dedicated to building stronger, more resilient communities by expanding access to safe, affordable housing, advancing green energy, and empowering individuals through workforce development and economic opportunity.</p>
+    <div class="mission-quote-author">— Our Mission, Home-Bridge Foundation</div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title">Three Pillars of Community Change</h2>
+  <p class="section-sub">Every program we run is designed to address the root causes of poverty and inequality in rural South Carolina.</p>
+
+  <div class="programs-grid">
+    <div class="program-card housing">
+      <div class="program-icon">🏠</div>
+      <h3>Affordable Housing</h3>
+      <p>We develop, preserve, and revitalize safe, quality housing for underserved families in Dillon County and the Pee Dee region — because stable housing is the foundation of everything else.</p>
+      <span class="program-tag">Housing Access</span>
+    </div>
+
+    <div class="program-card green">
+      <div class="program-icon">🌱</div>
+      <h3>Green Energy & Environment</h3>
+      <p>We advance community-based environmental justice through green energy initiatives and sustainability programs — building economic resilience while protecting the health of our communities.</p>
+      <span class="program-tag">Environmental Justice</span>
+    </div>
+
+    <div class="program-card workforce">
+      <div class="program-icon">🎓</div>
+      <h3>Workforce Development</h3>
+      <p>We provide skills training, industry certifications, and employment pathways in emerging sectors — giving Dillon County residents the tools they need to build lasting economic independence.</p>
+      <span class="program-tag">Skills & Careers</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY NEED -->
+<section class="need" id="need">
+  <div class="section-label">The Challenge</div>
+  <h2 class="section-title">Why Dillon County Needs Home-Bridge</h2>
+  <p class="section-sub">Dillon County faces some of the steepest economic challenges in South Carolina. We're here because the need is real — and the opportunity to change lives is too.</p>
+
+  <div class="need-stats">
+    <div class="need-stat">
+      <div class="need-stat-num">Top 5</div>
+      <div class="need-stat-desc">Dillon County ranks among the top 5 highest-poverty counties in South Carolina</div>
+    </div>
+    <div class="need-stat">
+      <div class="need-stat-num">Rural</div>
+      <div class="need-stat-desc">Limited access to workforce training, certifications, and emerging-industry employers</div>
+    </div>
+    <div class="need-stat">
+      <div class="need-stat-num">Housing</div>
+      <div class="need-stat-desc">Critical shortage of safe, affordable housing for working families in the Pee Dee region</div>
+    </div>
+    <div class="need-stat">
+      <div class="need-stat-num">Gap</div>
+      <div class="need-stat-desc">Persistent skills gap between available workers and in-demand green energy and construction jobs</div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate" id="donate">
+  <div class="section-label">Make a Difference</div>
+  <h2 class="section-title">Support Our Community</h2>
+  <p class="section-sub">Your donation directly funds housing development, workforce training, and green energy programs for families in Dillon County.</p>
+
+  <div class="donate-grid">
+    <div class="donate-why">
+      <h3>Your gift changes lives in rural South Carolina.</h3>
+      <ul>
+        <li>100% of donations support programs serving Dillon County families</li>
+        <li>All donations are tax-deductible — Home-Bridge Foundation is a federally recognized 501(c)(3)</li>
+        <li>Funds go directly to workforce training, housing programs, and green energy initiatives</li>
+        <li>You'll receive a donation receipt for your records</li>
+        <li>Corporate and foundation matching gifts welcomed</li>
+        <li>In-kind donations of services, equipment, and expertise also accepted</li>
+      </ul>
+    </div>
+
+    <div class="donate-form">
+      <h3>Choose Your Impact</h3>
+      <p class="donate-form-sub">Select a donation amount or enter your own</p>
+
+      <div class="amount-grid">
+        <button class="amount-btn" onclick="selectAmount(this, 25)">
+          $25
+          <span class="impact-note">Training materials</span>
+        </button>
+        <button class="amount-btn active" onclick="selectAmount(this, 50)">
+          $50
+          <span class="impact-note">Job certification fee</span>
+        </button>
+        <button class="amount-btn" onclick="selectAmount(this, 100)">
+          $100
+          <span class="impact-note">One week of training</span>
+        </button>
+        <button class="amount-btn" onclick="selectAmount(this, 250)">
+          $250
+          <span class="impact-note">Housing materials</span>
+        </button>
+        <button class="amount-btn" onclick="selectAmount(this, 500)">
+          $500
+          <span class="impact-note">Full training slot</span>
+        </button>
+        <button class="amount-btn" onclick="selectAmount(this, 1000)">
+          $1,000
+          <span class="impact-note">Program sponsor</span>
+        </button>
+      </div>
+
+      <input class="custom-amount" type="text" placeholder="Or enter a custom amount: $" id="customAmount">
+
+      <button class="donate-btn-main" onclick="handleDonate()">
+        ♥ &nbsp; Donate Now
+      </button>
+      <p class="donate-secure">🔒 Secure · Tax-Deductible · 501(c)(3) Verified</p>
+    </div>
+  </div>
+</section>
+
+<!-- GET INVOLVED -->
+<section class="involved" id="involved">
+  <div class="section-label">Join Us</div>
+  <h2 class="section-title">More Ways to Get Involved</h2>
+  <p class="section-sub">There are many ways to support the mission of Home-Bridge Foundation beyond financial donations.</p>
+
+  <div class="involved-grid">
+    <div class="involved-card">
+      <span class="involved-icon">🤝</span>
+      <h3>Volunteer</h3>
+      <p>Share your skills, time, and energy to help deliver programs, support families, and build community in Dillon County.</p>
+      <a href="#contact" class="btn-outline-green">Volunteer With Us</a>
+    </div>
+
+    <div class="involved-card">
+      <span class="involved-icon">🏢</span>
+      <h3>Partner With Us</h3>
+      <p>Are you an employer, training provider, or organization aligned with our mission? Let's build something together in the Pee Dee region.</p>
+      <a href="#contact" class="btn-outline-green">Become a Partner</a>
+    </div>
+
+    <div class="involved-card">
+      <span class="involved-icon">📣</span>
+      <h3>Spread the Word</h3>
+      <p>Follow our work, share our mission, and help connect families in Dillon County with the programs and opportunities they need.</p>
+      <a href="#contact" class="btn-outline-green">Stay Connected</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer class="contact" id="contact">
+  <div class="contact-brand">
+    <svg width="52" height="52" viewBox="0 0 42 42" fill="none">
+      <path d="M4 30 Q21 10 38 30" stroke="#3aaa35" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <circle cx="21" cy="9" r="4" fill="#3aaa35"/>
+      <circle cx="12" cy="15" r="3.2" fill="#1b6bbf"/>
+      <circle cx="30" cy="15" r="3.2" fill="#1b6bbf"/>
+    </svg>
+    <p class="tagline">Connecting Community to Opportunity</p>
+    <p>Home-Bridge Foundation, Inc. is a 501(c)(3) nonprofit corporation serving Dillon County and the Pee Dee region of South Carolina.</p>
+  </div>
+
+  <div>
+    <h4>Programs</h4>
+    <ul>
+      <li><a href="#programs">Affordable Housing</a></li>
+      <li><a href="#programs">Green Energy & Environment</a></li>
+      <li><a href="#programs">Workforce Development</a></li>
+    </ul>
+  </div>
+
+  <div>
+    <h4>Contact</h4>
+    <ul>
+      <li><span>Marcus Hayes, Executive Director</span></li>
+      <li><span>547 Hickory Pointe Place</span></li>
+      <li><span>Latta, SC 29565</span></li>
+      <li><span>Dillon County, South Carolina</span></li>
+      <li><a href="mailto:info@homebridgefoundation.org">info@homebridgefoundation.org</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <p>© 2025 Home-Bridge Foundation, Inc. · 501(c)(3) Nonprofit · EIN on file</p>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Use</a>
+    <a href="#">Donor Rights</a>
+  </div>
+</div>
+
+<script>
+  let selectedAmount = 50;
+
+  function selectAmount(btn, amount) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedAmount = amount;
+    document.getElementById('customAmount').value = '';
+  }
+
+  function handleDonate() {
+    const custom = document.getElementById('customAmount').value.replace(/[^0-9.]/g,'');
+    const amount = custom || selectedAmount;
+    alert(`Thank you for your generous donation of $${amount}!\n\nIn your final website, this button will connect to your payment processor (PayPal Giving Fund, Stripe, or Network for Good — all free for nonprofits).\n\nHome-Bridge Foundation is a 501(c)(3) — your donation is tax-deductible.`);
+  }
+
+  // Smooth scroll for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.program-card, .need-stat, .involved-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
