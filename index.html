@@ -1,1 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Home-Bridge Foundation — Connecting Community to Opportunity in Dillon County, SC. Affordable housing, green energy, and workforce development.">
+<title>Home-Bridge Foundation | Connecting Community to Opportunity</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap');
 
+:root {
+  --green:        #3aaa35;
+  --green-dark:   #2e7d4f;
+  --green-light:  #e8f7e8;
+  --blue:         #1b6bbf;
+  --blue-dark:    #1B5E8A;
+  --blue-light:   #e8f2fb;
+  --navy:         #1a2e44;
+  --text:         #1a2e44;
+  --muted:        #5a6a7a;
+  --white:        #ffffff;
+  --off-white:    #f8faf9;
+  --border:       #e0eae2;
+  --orange:       #e67e22;
+  --orange-light: #fef3e2;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ── UTILITIES ─────────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.section-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--green); margin-bottom: 0.6rem; }
+.section-title  { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--navy); line-height: 1.15; margin-bottom: 1rem; }
+.section-sub    { font-size: 1.05rem; color: var(--muted); line-height: 1.75; max-width: 560px; }
+.text-center    { text-align: center; }
+.text-center .section-sub { margin: 0 auto; }
+
+.btn-primary {
+  background: var(--green); color: white; border: none;
+  padding: 0.85rem 1.9rem; border-radius: 50px;
+  font-size: 0.95rem; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: all 0.25s;
+  box-shadow: 0 4px 18px rgba(58,170,53,0.3);
+}
+.btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(58,170,53,0.4); }
+
+.btn-secondary {
+  background: transparent; color: var(--blue); border: 2px solid var(--blue);
+  padding: 0.85rem 1.9rem; border-radius: 50px;
+  font-size: 0.95rem; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: all 0.25s;
+}
+.btn-secondary:hover { background: var(--blue); color: white; transform: translateY(-2px); }
+
+.btn-outline {
+  border: 2px solid var(--green); color: var(--green-dark);
+  padding: 0.65rem 1.5rem; border-radius: 50px;
+  font-size: 0.88rem; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  text-decoration: none; display: inline-block;
+  transition: all 0.2s;
+}
+.btn-outline:hover { background: var(--green); color: white; }
+
+/* ── NAV ───────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(255,255,255,0.96); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  height: 68px;
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+.nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.nav-logo-text .top { font-size: 1rem; font-weight: 600; }
+.nav-logo-text .top em  { color: var(--green); font-style: normal; }
+.nav-logo-text .top strong { color: var(--blue); }
+.nav-logo-text .sub { font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.nav-links { display: flex; align-items: center; gap: 1.8rem; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--text); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--green); }
+.nav-donate { background: var(--green); color: white !important; padding: 0.5rem 1.3rem; border-radius: 50px; font-weight: 600 !important; transition: background 0.2s !important; }
+.nav-donate:hover { background: var(--green-dark) !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
+
+.mobile-menu {
+  display: none; position: fixed; top: 68px; left: 0; right: 0;
+  background: white; border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem; z-index: 199;
+  flex-direction: column; gap: 1rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+
+/* ── PAGE HERO (inner pages) ───────────────── */
+.page-hero {
+  padding-top: 68px;
+  background: linear-gradient(135deg, var(--navy) 0%, #0f2035 100%);
+  position: relative; overflow: hidden;
+  padding-bottom: 4rem;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 10% 60%, rgba(58,170,53,0.18) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 60% at 90% 20%, rgba(27,107,191,0.2) 0%, transparent 60%);
+}
+.page-hero-inner { position: relative; z-index: 1; padding: 4rem 2rem 2rem; max-width: 1200px; margin: 0 auto; }
+.page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); color: white; font-weight: 900; margin-bottom: 1rem; }
+.page-hero p  { font-size: 1.1rem; color: rgba(255,255,255,0.75); max-width: 560px; line-height: 1.7; }
+.breadcrumb   { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 1.5rem; }
+.breadcrumb a, .breadcrumb span { font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; }
+.breadcrumb a:hover { color: var(--green); }
+.breadcrumb .sep { color: rgba(255,255,255,0.3); }
+
+/* ── FOOTER ────────────────────────────────── */
+.footer {
+  background: var(--navy); color: white;
+  padding: 4rem 2rem 0;
+}
+.footer-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 3rem;
+  padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-top: 1rem; max-width: 260px; }
+.footer-brand .tagline { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--green); font-size: 0.95rem; margin-top: 0.4rem; }
+.footer-col h4 { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: 1.2rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+.footer-col ul li a, .footer-col ul li span { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--green); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding: 1.2rem 0; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p, .footer-bottom a { font-size: 0.78rem; color: rgba(255,255,255,0.35); text-decoration: none; }
+.footer-bottom a:hover { color: var(--green); }
+.footer-bottom-links { display: flex; gap: 1.5rem; }
+
+/* ── SCROLL REVEAL ─────────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ────────────────────────────── */
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+@media (max-width: 640px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+
+</style>
+<style>
+/* ── HERO ───────────────────────────────────────────── */
+.hero {
+  min-height: 100vh; padding-top: 68px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 5rem 3rem 5rem 5rem;
+  animation: fadeUp 0.7s ease both;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: var(--green-light); color: var(--green-dark);
+  padding: 0.4rem 1rem; border-radius: 50px;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+  margin-bottom: 1.5rem; width: fit-content;
+}
+.pulse-dot {
+  width: 8px; height: 8px; background: var(--green); border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.6rem, 4vw, 4rem); font-weight: 900;
+  line-height: 1.08; color: var(--navy); margin-bottom: 1.4rem;
+}
+.hero h1 .green { color: var(--green); }
+.hero h1 .blue  { color: var(--blue); }
+.hero-sub { font-size: 1.1rem; color: var(--muted); line-height: 1.72; max-width: 480px; margin-bottom: 2.5rem; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.hero-right {
+  background: linear-gradient(140deg, var(--blue-dark) 0%, var(--navy) 100%);
+  position: relative; overflow: hidden; display: flex; flex-direction: column;
+}
+.hero-bg-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 70% 35%, rgba(58,170,53,.22) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 70% at 25% 75%, rgba(27,107,191,.25) 0%, transparent 60%);
+}
+.hero-art {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  padding: 3rem; position: relative; z-index: 1;
+  animation: fadeUp 0.8s 0.15s ease both;
+}
+.hero-art svg { width: 100%; max-width: 460px; }
+.hero-stats {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  background: rgba(255,255,255,.08); backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,.1);
+  position: relative; z-index: 1;
+}
+.hero-stat { padding: 1.4rem 1rem; text-align: center; border-right: 1px solid rgba(255,255,255,.08); }
+.hero-stat:last-child { border-right: none; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: white; }
+.stat-num span { color: var(--green); }
+.stat-label { font-size: 0.7rem; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .08em; margin-top: .25rem; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── CRED BAND ──────────────────────────────────────── */
+.cred-band { background: var(--navy); padding: 1rem 0; }
+.cred-items { display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+.cred-item { display: flex; align-items: center; gap: .6rem; color: rgba(255,255,255,.8); font-size: .875rem; font-weight: 500; }
+.cred-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.cred-dot.green  { background: var(--green); }
+.cred-dot.blue   { background: var(--blue); }
+.cred-dot.orange { background: var(--orange); }
+
+/* ── MISSION SNAP ───────────────────────────────────── */
+.mission-snap { padding: 6rem 0; background: var(--off-white); }
+.mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.mission-quote {
+  background: white; border-radius: 20px; border-left: 5px solid var(--green);
+  padding: 2.5rem; box-shadow: 0 4px 40px rgba(0,0,0,.07); position: relative;
+}
+.quote-mark {
+  font-family: 'Playfair Display', serif; font-size: 7rem; line-height: 0;
+  color: var(--green-light); position: absolute; top: 3rem; left: 1.5rem;
+}
+.mission-quote p { font-family: 'DM Serif Display', serif; font-size: 1.25rem; line-height: 1.65; color: var(--navy); position: relative; z-index: 1; }
+.quote-attr { margin-top: 1.5rem; font-size: .82rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+
+/* ── PROGRAMS OVERVIEW ──────────────────────────────── */
+.programs-overview { padding: 6rem 0; background: white; }
+.programs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+.prog-card {
+  background: var(--off-white); border: 1px solid var(--border); border-radius: 20px;
+  padding: 2.2rem; transition: all .3s; position: relative; overflow: hidden;
+}
+.prog-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+  transform: scaleX(0); transform-origin: left; transition: transform .3s;
+}
+.prog-card[data-color="blue"]::after   { background: var(--blue); }
+.prog-card[data-color="green"]::after  { background: var(--green); }
+.prog-card[data-color="orange"]::after { background: var(--orange); }
+.prog-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(0,0,0,.09); }
+.prog-card:hover::after { transform: scaleX(1); }
+.prog-icon { width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.4rem; }
+.prog-icon.blue-bg   { background: var(--blue-light); }
+.prog-icon.green-bg  { background: var(--green-light); }
+.prog-icon.orange-bg { background: var(--orange-light); }
+.prog-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: .65rem; }
+.prog-card p  { font-size: .9rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.2rem; }
+.prog-link { font-size: .85rem; font-weight: 600; color: var(--green-dark); text-decoration: none; }
+.prog-link:hover { text-decoration: underline; }
+
+/* ── NEED SECTION ───────────────────────────────────── */
+.need-section {
+  padding: 6rem 0;
+  background: linear-gradient(140deg, var(--navy) 0%, #0e1e30 100%); position: relative;
+}
+.need-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+.need-stats  { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+.need-stat {
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px; padding: 2rem 1.4rem; text-align: center; transition: background .3s;
+}
+.need-stat:hover { background: rgba(255,255,255,.12); }
+.need-num  { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900; color: var(--green); margin-bottom: .5rem; }
+.need-desc { font-size: .83rem; color: rgba(255,255,255,.7); line-height: 1.55; }
+
+/* ── CTA BANNER ─────────────────────────────────────── */
+.cta-banner { padding: 5rem 0; background: var(--green-light); }
+.cta-inner  { display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+.cta-inner h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--navy); margin-bottom: .5rem; }
+.cta-inner p  { color: var(--muted); font-size: 1rem; }
+.cta-buttons  { display: flex; gap: 1rem; flex-shrink: 0; flex-wrap: wrap; }
+
+/* ── RESPONSIVE ─────────────────────────────────────── */
+@media(max-width:960px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 3rem 2rem; }
+  .hero-right { min-height: 340px; }
+  .mission-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .programs-grid { grid-template-columns: 1fr; }
+  .need-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .need-stats  { grid-template-columns: repeat(2,1fr); }
+  .cta-inner   { flex-direction: column; }
+  .mission-snap, .programs-overview, .need-section, .cta-banner { padding: 4rem 0; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="pulse-dot"></span>
+      501(c)(3) Nonprofit · Dillon County, SC
+    </div>
+    <h1>
+      <span class="green">Connecting</span><br>
+      Community<br>
+      <span class="blue">to Opportunity</span>
+    </h1>
+    <p class="hero-sub">
+      Home-Bridge Foundation builds stronger, more resilient communities in rural South Carolina — through affordable housing, green energy, and workforce training for those who need it most.
+    </p>
+    <div class="hero-actions">
+      <a href="donate.html" class="btn-primary">♥ &nbsp;Donate Today</a>
+      <a href="programs.html" class="btn-secondary">Our Programs →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-art">
+      <svg viewBox="0 0 460 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="230" width="460" height="70" fill="rgba(58,170,53,0.1)"/>
+        <path d="M40 228 Q230 55 420 228" stroke="#3aaa35" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <rect x="28" y="224" width="404" height="8" rx="4" fill="rgba(255,255,255,0.25)"/>
+        <line x1="120" y1="140" x2="120" y2="232" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="4 4"/>
+        <line x1="230" y1="62"  x2="230" y2="232" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="4 4"/>
+        <line x1="340" y1="140" x2="340" y2="232" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="4 4"/>
+        <circle cx="230" cy="100" r="17" fill="#3aaa35"/>
+        <ellipse cx="230" cy="138" rx="13" ry="18" fill="#3aaa35"/>
+        <circle cx="158" cy="148" r="13" fill="#1b6bbf"/>
+        <ellipse cx="158" cy="177" rx="10" ry="15" fill="#1b6bbf"/>
+        <circle cx="186" cy="157" r="11" fill="rgba(27,107,191,0.7)"/>
+        <ellipse cx="186" cy="183" rx="8.5" ry="13" fill="rgba(27,107,191,0.7)"/>
+        <circle cx="302" cy="148" r="13" fill="#1b6bbf"/>
+        <ellipse cx="302" cy="177" rx="10" ry="15" fill="#1b6bbf"/>
+        <circle cx="274" cy="157" r="11" fill="rgba(27,107,191,0.7)"/>
+        <ellipse cx="274" cy="183" rx="8.5" ry="13" fill="rgba(27,107,191,0.7)"/>
+        <polygon points="55,226 68,200 81,226" fill="rgba(255,255,255,0.2)"/>
+        <rect x="58" y="226" width="20" height="12" fill="rgba(255,255,255,0.12)"/>
+        <polygon points="379,226 392,200 405,226" fill="rgba(58,170,53,0.4)"/>
+        <rect x="382" y="226" width="20" height="12" fill="rgba(58,170,53,0.22)"/>
+        <circle cx="78"  cy="75"  r="2"   fill="rgba(255,255,255,0.35)"/>
+        <circle cx="380" cy="95"  r="2.5" fill="rgba(58,170,53,0.55)"/>
+        <circle cx="148" cy="42"  r="1.5" fill="rgba(255,255,255,0.25)"/>
+        <circle cx="310" cy="52"  r="2"   fill="rgba(255,255,255,0.25)"/>
+      </svg>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-num"><span>3</span></div>
+        <div class="stat-label">Core Programs</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">Dillon <span>Co.</span></div>
+        <div class="stat-label">Pee Dee Region, SC</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num"><span>501</span>(c)(3)</div>
+        <div class="stat-label">Federally Recognized</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS BAND -->
+<div class="cred-band">
+  <div class="container">
+    <div class="cred-items">
+      <div class="cred-item"><span class="cred-dot green"></span>501(c)(3) Federally Recognized</div>
+      <div class="cred-item"><span class="cred-dot blue"></span>SAM.gov Registered</div>
+      <div class="cred-item"><span class="cred-dot green"></span>Grants.gov Active</div>
+      <div class="cred-item"><span class="cred-dot orange"></span>Serving Dillon County Since 2025</div>
+    </div>
+  </div>
+</div>
+
+<!-- MISSION SNAPSHOT -->
+<section class="mission-snap">
+  <div class="container">
+    <div class="mission-grid">
+      <div class="mission-text">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">Building Bridges Where They're Needed Most</h2>
+        <p class="section-sub">Home-Bridge Foundation was born from a belief that your zip code shouldn't determine your future. We're a Dillon County nonprofit closing the gap between underserved communities and the housing, energy, and economic opportunities they deserve.</p>
+        <br>
+        <a href="about.html" class="btn-outline">Learn Our Story →</a>
+      </div>
+      <div class="mission-quote reveal">
+        <div class="quote-mark">"</div>
+        <p>Home-Bridge Foundation is dedicated to building stronger, more resilient communities by expanding access to safe, affordable housing, advancing green energy, and empowering individuals through workforce development and economic opportunity.</p>
+        <div class="quote-attr">— Our Mission Statement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS OVERVIEW -->
+<section class="programs-overview">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Three Pillars of Community Change</h2>
+      <p class="section-sub">Every program we run is designed to address root causes of poverty and inequality in rural South Carolina.</p>
+    </div>
+    <div class="programs-grid">
+      <div class="prog-card reveal" data-color="blue">
+        <div class="prog-icon blue-bg">🏠</div>
+        <h3>Affordable Housing</h3>
+        <p>Developing, preserving, and revitalizing safe, quality housing for underserved families in Dillon County.</p>
+        <a href="programs.html#housing" class="prog-link">Learn more →</a>
+      </div>
+      <div class="prog-card reveal" data-color="green">
+        <div class="prog-icon green-bg">🌱</div>
+        <h3>Green Energy & Environment</h3>
+        <p>Community-based environmental justice through green energy initiatives and sustainability programs.</p>
+        <a href="programs.html#green" class="prog-link">Learn more →</a>
+      </div>
+      <div class="prog-card reveal" data-color="orange">
+        <div class="prog-icon orange-bg">🎓</div>
+        <h3>Workforce Development</h3>
+        <p>Skills training, industry certifications, and employment pathways in emerging sectors — launching now.</p>
+        <a href="programs.html#workforce" class="prog-link">Learn more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEED SECTION -->
+<section class="need-section">
+  <div class="container">
+    <div class="need-header">
+      <div>
+        <div class="section-label" style="color:var(--green)">The Challenge</div>
+        <h2 class="section-title" style="color:white">Why Dillon County Needs Home-Bridge</h2>
+      </div>
+      <p class="section-sub" style="color:rgba(255,255,255,0.65)">Dillon County faces some of the steepest economic challenges in South Carolina. We're here because the need is real — and the opportunity to change lives is immense.</p>
+    </div>
+    <div class="need-stats">
+      <div class="need-stat reveal">
+        <div class="need-num">Top 5</div>
+        <div class="need-desc">Highest-poverty counties in South Carolina</div>
+      </div>
+      <div class="need-stat reveal">
+        <div class="need-num">Rural</div>
+        <div class="need-desc">Limited access to workforce training and emerging-industry employers</div>
+      </div>
+      <div class="need-stat reveal">
+        <div class="need-num">Housing</div>
+        <div class="need-desc">Critical shortage of safe, affordable housing in the Pee Dee region</div>
+      </div>
+      <div class="need-stat reveal">
+        <div class="need-num">Gap</div>
+        <div class="need-desc">Persistent skills gap between available workers and in-demand jobs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2>Ready to make a difference in Dillon County?</h2>
+        <p>Your support funds housing, training, and green energy programs for families who need it most.</p>
+      </div>
+      <div class="cta-buttons">
+        <a href="donate.html" class="btn-primary">♥ &nbsp;Donate Now</a>
+        <a href="contact.html" class="btn-secondary">Get Involved</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script>
+// Shared nav HTML — injected by each page
+window.NAV_HTML = `
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="40" height="40" viewBox="0 0 42 42" fill="none">
+        <path d="M4 30 Q21 10 38 30" stroke="#3aaa35" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <circle cx="21" cy="9" r="4" fill="#3aaa35"/>
+        <circle cx="12" cy="15" r="3.2" fill="#1b6bbf"/>
+        <circle cx="30" cy="15" r="3.2" fill="#1b6bbf"/>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="top"><em>Home</em><strong>Bridge</strong></span>
+        <span class="sub">Foundation</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="donate.html">Donate</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="donate.html" class="nav-donate">Donate Now</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="programs.html">Programs</a>
+  <a href="donate.html">Donate</a>
+  <a href="contact.html">Contact</a>
+</div>
+`;
+
+window.FOOTER_HTML = `
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <svg width="48" height="48" viewBox="0 0 42 42" fill="none">
+        <path d="M4 30 Q21 10 38 30" stroke="#3aaa35" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <circle cx="21" cy="9" r="4" fill="#3aaa35"/>
+        <circle cx="12" cy="15" r="3.2" fill="#1b6bbf"/>
+        <circle cx="30" cy="15" r="3.2" fill="#1b6bbf"/>
+      </svg>
+      <p class="tagline">Connecting Community to Opportunity</p>
+      <p>Home-Bridge Foundation, Inc. is a federally recognized 501(c)(3) nonprofit serving Dillon County and the Pee Dee region of South Carolina.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="programs.html#housing">Affordable Housing</a></li>
+        <li><a href="programs.html#green">Green Energy</a></li>
+        <li><a href="programs.html#workforce">Workforce Development</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Organization</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="about.html#board">Board of Directors</a></li>
+        <li><a href="about.html#mission">Mission & Values</a></li>
+        <li><a href="donate.html">Support Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><span>Marcus Hayes, Executive Director</span></li>
+        <li><span>547 Hickory Pointe Place</span></li>
+        <li><span>Latta, SC 29565</span></li>
+        <li><a href="mailto:info@homebridgefoundation.org">info@homebridgefoundation.org</a></li>
+        <li><a href="contact.html">Send a Message →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Home-Bridge Foundation, Inc. · 501(c)(3) Nonprofit · EIN on file</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Donor Rights</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+`;
+
+// Inject nav + footer
+document.addEventListener('DOMContentLoaded', function() {
+  const navTarget = document.getElementById('nav-placeholder');
+  const footerTarget = document.getElementById('footer-placeholder');
+  if (navTarget)    navTarget.outerHTML = window.NAV_HTML;
+  if (footerTarget) footerTarget.outerHTML = window.FOOTER_HTML;
+});
+
+</script>
+<script>
+// ── NAV ACTIVE STATE ───────────────────────────────────────────
+(function () {
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href === path || (path === '' && href === 'index.html')) {
+      a.classList.add('active');
+    }
+  });
+})();
+
+// ── HAMBURGER MENU ─────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+}
+
+// ── SCROLL REVEAL ──────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, entry.target.dataset.delay || 0);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.dataset.delay = (i % 4) * 80;
+  observer.observe(el);
+});
+
+// ── SMOOTH SCROLL (anchor links) ───────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ── DONATE AMOUNT SELECTOR ─────────────────────────────────────
+window.selectedAmount = 50;
+
+window.selectAmount = function(btn, amount) {
+  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  window.selectedAmount = amount;
+  const custom = document.getElementById('customAmount');
+  if (custom) custom.value = '';
+};
+
+window.handleDonate = function() {
+  const custom = document.getElementById('customAmount');
+  const val = custom ? custom.value.replace(/[^0-9.]/g, '') : '';
+  const amount = val || window.selectedAmount;
+  alert(
+    `Thank you for your $${amount} donation!\n\n` +
+    `To complete your gift, this button will connect to your payment processor.\n\n` +
+    `Recommended FREE options for nonprofits:\n` +
+    `• PayPal Giving Fund (paypal.com/us/webapps/mpp/npc-donate-form)\n` +
+    `• Network for Good (networkforgood.com)\n` +
+    `• Zeffy (zeffy.com — 0% fees)\n\n` +
+    `Home-Bridge Foundation is a 501(c)(3). Your donation is tax-deductible.`
+  );
+};
+
+// ── CONTACT FORM ───────────────────────────────────────────────
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'var(--green-dark)';
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+      this.reset();
+    }, 3000);
+  });
+}
+
+</script>
+</body>
+</html>

@@ -1,3 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact Home-Bridge Foundation — reach out to volunteer, partner, donate, or learn about our programs in Dillon County, SC.">
+<title>Contact | Home-Bridge Foundation</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+:root {
+  --green:        #3aaa35;
+  --green-dark:   #2e7d4f;
+  --green-light:  #e8f7e8;
+  --blue:         #1b6bbf;
+  --blue-dark:    #1B5E8A;
+  --blue-light:   #e8f2fb;
+  --navy:         #1a2e44;
+  --text:         #1a2e44;
+  --muted:        #5a6a7a;
+  --white:        #ffffff;
+  --off-white:    #f8faf9;
+  --border:       #e0eae2;
+  --orange:       #e67e22;
+  --orange-light: #fef3e2;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ── UTILITIES ─────────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.section-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--green); margin-bottom: 0.6rem; }
+.section-title  { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--navy); line-height: 1.15; margin-bottom: 1rem; }
+.section-sub    { font-size: 1.05rem; color: var(--muted); line-height: 1.75; max-width: 560px; }
+.text-center    { text-align: center; }
+.text-center .section-sub { margin: 0 auto; }
+
+.btn-primary {
+  background: var(--green); color: white; border: none;
+  padding: 0.85rem 1.9rem; border-radius: 50px;
+  font-size: 0.95rem; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: all 0.25s;
+  box-shadow: 0 4px 18px rgba(58,170,53,0.3);
+}
+.btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(58,170,53,0.4); }
+
+.btn-secondary {
+  background: transparent; color: var(--blue); border: 2px solid var(--blue);
+  padding: 0.85rem 1.9rem; border-radius: 50px;
+  font-size: 0.95rem; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: all 0.25s;
+}
+.btn-secondary:hover { background: var(--blue); color: white; transform: translateY(-2px); }
+
+.btn-outline {
+  border: 2px solid var(--green); color: var(--green-dark);
+  padding: 0.65rem 1.5rem; border-radius: 50px;
+  font-size: 0.88rem; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  text-decoration: none; display: inline-block;
+  transition: all 0.2s;
+}
+.btn-outline:hover { background: var(--green); color: white; }
+
+/* ── NAV ───────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(255,255,255,0.96); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  height: 68px;
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+.nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.nav-logo-text .top { font-size: 1rem; font-weight: 600; }
+.nav-logo-text .top em  { color: var(--green); font-style: normal; }
+.nav-logo-text .top strong { color: var(--blue); }
+.nav-logo-text .sub { font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.nav-links { display: flex; align-items: center; gap: 1.8rem; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--text); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--green); }
+.nav-donate { background: var(--green); color: white !important; padding: 0.5rem 1.3rem; border-radius: 50px; font-weight: 600 !important; transition: background 0.2s !important; }
+.nav-donate:hover { background: var(--green-dark) !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
+
+.mobile-menu {
+  display: none; position: fixed; top: 68px; left: 0; right: 0;
+  background: white; border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem; z-index: 199;
+  flex-direction: column; gap: 1rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 1rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+
+/* ── PAGE HERO (inner pages) ───────────────── */
+.page-hero {
+  padding-top: 68px;
+  background: linear-gradient(135deg, var(--navy) 0%, #0f2035 100%);
+  position: relative; overflow: hidden;
+  padding-bottom: 4rem;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 10% 60%, rgba(58,170,53,0.18) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 60% at 90% 20%, rgba(27,107,191,0.2) 0%, transparent 60%);
+}
+.page-hero-inner { position: relative; z-index: 1; padding: 4rem 2rem 2rem; max-width: 1200px; margin: 0 auto; }
+.page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); color: white; font-weight: 900; margin-bottom: 1rem; }
+.page-hero p  { font-size: 1.1rem; color: rgba(255,255,255,0.75); max-width: 560px; line-height: 1.7; }
+.breadcrumb   { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 1.5rem; }
+.breadcrumb a, .breadcrumb span { font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; }
+.breadcrumb a:hover { color: var(--green); }
+.breadcrumb .sep { color: rgba(255,255,255,0.3); }
+
+/* ── FOOTER ────────────────────────────────── */
+.footer {
+  background: var(--navy); color: white;
+  padding: 4rem 2rem 0;
+}
+.footer-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 3rem;
+  padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-top: 1rem; max-width: 260px; }
+.footer-brand .tagline { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--green); font-size: 0.95rem; margin-top: 0.4rem; }
+.footer-col h4 { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: 1.2rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+.footer-col ul li a, .footer-col ul li span { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--green); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding: 1.2rem 0; display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p, .footer-bottom a { font-size: 0.78rem; color: rgba(255,255,255,0.35); text-decoration: none; }
+.footer-bottom a:hover { color: var(--green); }
+.footer-bottom-links { display: flex; gap: 1.5rem; }
+
+/* ── SCROLL REVEAL ─────────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ────────────────────────────── */
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+@media (max-width: 640px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+
+</style>
+<style>
+  .contact-main { padding: 6rem 0; background: white; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+
+  /* INFO SIDE */
+  .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 1.2rem; }
+  .info-items { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2.5rem; }
+  .info-item  { display: flex; gap: 1rem; align-items: flex-start; }
+  .info-icon  { width: 44px; height: 44px; min-width: 44px; border-radius: 12px; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+  .info-text strong { display: block; font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .2rem; }
+  .info-text span, .info-text a { font-size: .96rem; color: var(--navy); text-decoration: none; }
+  .info-text a:hover { color: var(--green); }
+
+  .involve-options { background: var(--off-white); border-radius: 18px; padding: 1.8rem; border: 1px solid var(--border); }
+  .involve-options h4 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 1rem; }
+  .involve-item { display: flex; gap: .8rem; align-items: center; padding: .65rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; color: var(--muted); }
+  .involve-item:last-child { border-bottom: none; }
+  .involve-item span:first-child { font-size: 1.1rem; }
+
+  /* FORM SIDE */
+  .contact-form-card { background: var(--off-white); border-radius: 24px; padding: 2.5rem; border: 1px solid var(--border); }
+  .contact-form-card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--navy); margin-bottom: .4rem; }
+  .form-sub { font-size: .9rem; color: var(--muted); margin-bottom: 2rem; }
+
+  .form-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1.1rem; }
+  .form-group label { font-size: .82rem; font-weight: 600; color: var(--navy); text-transform: uppercase; letter-spacing: .06em; }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: .8rem 1rem; border: 2px solid var(--border); border-radius: 12px;
+    font-size: .95rem; font-family: 'DM Sans', sans-serif; outline: none;
+    transition: border-color .2s; background: white; color: var(--navy);
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .submit-btn {
+    width: 100%; background: var(--green); color: white; border: none;
+    padding: 1rem; border-radius: 50px; font-size: 1rem; font-weight: 700;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .25s;
+    box-shadow: 0 4px 18px rgba(58,170,53,.3);
+  }
+  .submit-btn:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+  /* NETLIFY FORMS NOTE */
+  .netlify-note { background: var(--blue-light); border-radius: 12px; padding: 1rem 1.2rem; margin-top: 1.2rem; font-size: .8rem; color: var(--blue-dark); line-height: 1.55; }
+  .netlify-note strong { display: block; margin-bottom: .25rem; }
+
+  @media(max-width:960px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-main { padding: 4rem 0; }
+  }
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>Contact</span></div>
+    <h1>Get in Touch</h1>
+    <p>Whether you want to donate, volunteer, partner, or learn more about our programs — we'd love to hear from you.</p>
+  </div>
+</div>
+
+<section class="contact-main">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- INFO -->
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        <div class="info-items">
+          <div class="info-item reveal">
+            <div class="info-icon">📍</div>
+            <div class="info-text">
+              <strong>Address</strong>
+              <span>547 Hickory Pointe Place<br>Latta, South Carolina 29565<br>Dillon County, SC</span>
+            </div>
+          </div>
+          <div class="info-item reveal">
+            <div class="info-icon">✉️</div>
+            <div class="info-text">
+              <strong>Email</strong>
+              <a href="mailto:info@homebridgefoundation.org">info@homebridgefoundation.org</a>
+            </div>
+          </div>
+          <div class="info-item reveal">
+            <div class="info-icon">👤</div>
+            <div class="info-text">
+              <strong>Executive Director</strong>
+              <span>Marcus Hayes</span>
+            </div>
+          </div>
+          <div class="info-item reveal">
+            <div class="info-icon">🏛️</div>
+            <div class="info-text">
+              <strong>Organization Status</strong>
+              <span>501(c)(3) Federally Recognized Nonprofit<br>SAM.gov &amp; Grants.gov Registered</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="involve-options reveal">
+          <h4>Ways to Get Involved</h4>
+          <div class="involve-item"><span>♥</span><span>Make a financial donation</span></div>
+          <div class="involve-item"><span>🤝</span><span>Volunteer your time and skills</span></div>
+          <div class="involve-item"><span>🏢</span><span>Corporate or employer partnership</span></div>
+          <div class="involve-item"><span>🎓</span><span>Workforce training referral partner</span></div>
+          <div class="involve-item"><span>📦</span><span>In-kind donation of goods or services</span></div>
+          <div class="involve-item"><span>📣</span><span>Community advocate and ambassador</span></div>
+          <div class="involve-item"><span>📰</span><span>Media or press inquiry</span></div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="contact-form-card reveal">
+        <h3>Send Us a Message</h3>
+        <p class="form-sub">We respond to all messages within 2 business days.</p>
+
+        <!-- netlify attribute makes this work automatically on Netlify -->
+        <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <p style="display:none;"><input name="bot-field"></p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="first-name" required placeholder="First name">
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="last-name" required placeholder="Last name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(optional)">
+          </div>
+
+          <div class="form-group">
+            <label for="reason">Reason for Contact *</label>
+            <select id="reason" name="reason" required>
+              <option value="">Select a reason...</option>
+              <option value="donate">Make a Donation</option>
+              <option value="volunteer">Volunteer</option>
+              <option value="partner">Employer / Organization Partnership</option>
+              <option value="workforce">Workforce Training — Program Participant</option>
+              <option value="housing">Affordable Housing Inquiry</option>
+              <option value="grant">Grant / Funding Partnership</option>
+              <option value="media">Media / Press</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="org">Organization (if applicable)</label>
+            <input type="text" id="org" name="organization" placeholder="Company, agency, or organization name">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Tell us how you'd like to connect or support Home-Bridge Foundation..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Message →</button>
+        </form>
+
+        <div class="netlify-note">
+          <strong>📋 Netlify Forms — Already configured!</strong>
+          This form uses <code>data-netlify="true"</code> and will work automatically once deployed to Netlify. No backend needed. Form submissions appear in your Netlify dashboard under Forms.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script>
 // Shared nav HTML — injected by each page
 window.NAV_HTML = `
 <nav class="nav">
@@ -95,3 +443,98 @@ document.addEventListener('DOMContentLoaded', function() {
   if (navTarget)    navTarget.outerHTML = window.NAV_HTML;
   if (footerTarget) footerTarget.outerHTML = window.FOOTER_HTML;
 });
+
+</script>
+<script>
+// ── NAV ACTIVE STATE ───────────────────────────────────────────
+(function () {
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href === path || (path === '' && href === 'index.html')) {
+      a.classList.add('active');
+    }
+  });
+})();
+
+// ── HAMBURGER MENU ─────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+}
+
+// ── SCROLL REVEAL ──────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, entry.target.dataset.delay || 0);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.dataset.delay = (i % 4) * 80;
+  observer.observe(el);
+});
+
+// ── SMOOTH SCROLL (anchor links) ───────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ── DONATE AMOUNT SELECTOR ─────────────────────────────────────
+window.selectedAmount = 50;
+
+window.selectAmount = function(btn, amount) {
+  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  window.selectedAmount = amount;
+  const custom = document.getElementById('customAmount');
+  if (custom) custom.value = '';
+};
+
+window.handleDonate = function() {
+  const custom = document.getElementById('customAmount');
+  const val = custom ? custom.value.replace(/[^0-9.]/g, '') : '';
+  const amount = val || window.selectedAmount;
+  alert(
+    `Thank you for your $${amount} donation!\n\n` +
+    `To complete your gift, this button will connect to your payment processor.\n\n` +
+    `Recommended FREE options for nonprofits:\n` +
+    `• PayPal Giving Fund (paypal.com/us/webapps/mpp/npc-donate-form)\n` +
+    `• Network for Good (networkforgood.com)\n` +
+    `• Zeffy (zeffy.com — 0% fees)\n\n` +
+    `Home-Bridge Foundation is a 501(c)(3). Your donation is tax-deductible.`
+  );
+};
+
+// ── CONTACT FORM ───────────────────────────────────────────────
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'var(--green-dark)';
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+      this.reset();
+    }, 3000);
+  });
+}
+
+</script>
+</body>
+</html>
